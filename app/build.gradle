@@ -1,22 +1,26 @@
 apply plugin: 'com.android.application'
 
+apply plugin: 'kotlin-android'
+
+apply plugin: 'kotlin-android-extensions'
+apply from: "../packager.gradle"
+ext.anko_version='0.10.5'
 android {
     compileSdkVersion 26
-
-    dataBinding {
-        enabled true
-    }
     defaultConfig {
-        applicationId "com.hongru.coder"
-        minSdkVersion 16
+        applicationId "com.hongru.basic_support"
+        minSdkVersion 19
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
     }
     buildTypes {
         release {
             minifyEnabled false
+            signingConfig signingConfigs.release
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -24,5 +28,9 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    api project(':lib.base')
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+    api project(":lib.base")
+    compile "com.android.support:multidex:1.0.1"
+    implementation 'com.yanzhenjie:sofia:1.0.5'
+
 }

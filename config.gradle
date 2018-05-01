@@ -27,29 +27,32 @@ ext {
             'junit'                   : 'junit:junit:${version["junit-version"]}',
     ]
 
-    util = [
-            "utils": "com.blankj:utilcode:1.10.0",
-    ]
     //事件框架
     bus = [
             "event-bus": "org.greenrobot:eventbus:3.1.1"
     ]
 
-    //rx套件
-    rx = [
-            "rx-java"                : "io.reactivex.rxjava2:rxjava:2.1.8",
-            "rx-android"             : "io.reactivex.rxjava2:rxandroid:2.0.1",
-            "rx-lifecycle"           : "com.trello.rxlifecycle2:rxlifecycle:2.2.1",
-            "rx-lifecycle-components": "com.trello.rxlifecycle2:rxlifecycle-components:2.2.1",
-            "rx-bind"                : "com.jakewharton.rxbinding2:rxbinding:2.0.0"
-    ]
     //网络请求框架
     http = [
 
     ]
+
     //图片加载框架
     image = [
+            'glide'         : 'com.github.bumptech.glide:glide:4.7.1',
+            'glide-compiler': 'com.github.bumptech.glide:compiler:4.7.1'
 
+    ]
+    /**
+     * rx框架
+     */
+    rx = [
+            'kotlin' : 'io.reactivex.rxjava2:rxkotlin:2.2.0',
+            'android': 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    ]
+
+    view = [
+            'ratio-layout': 'net.soulwolf.widget:ratiolayout:2.1.0'
     ]
 
 

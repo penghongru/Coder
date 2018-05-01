@@ -1,4 +1,8 @@
-package com.hongru.base.enums;
+package com.hongru.base.view
+
+import android.support.v4.app.Fragment
+import io.reactivex.disposables.Disposable
+
 //<pre>
 //                       _oo0oo_
 //                      o8888888o
@@ -27,24 +31,24 @@ package com.hongru.base.enums;
 
 
 /**
- * @author 彭鸿儒
- * @date 2018/1/15
+ *@author 彭鸿儒
+ * @date 2018/4/14
  * 邮箱:peng_hongru@163.com
  */
-public enum LogTag {
+class BaseFragment:Fragment() {
 
-    CLICK("click"),
-    COMMAND("command");
+    private val disposables = arrayListOf<Disposable>()
 
-
-    private String desc;
-
-    private LogTag(String desc) {
-        this.desc = desc;
+    /**
+     * 注册RxJava事件
+     */
+    fun registerDisposable(disposable: Disposable) {
+        disposables.add(disposable)
     }
 
-    public String getDesc() {
-        return desc;
+    override fun onDestroy() {
+        disposables.forEach { it.dispose() }
+        super.onDestroy()
     }
 
 }

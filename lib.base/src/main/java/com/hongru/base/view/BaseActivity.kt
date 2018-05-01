@@ -1,4 +1,8 @@
-package com.hongru.coder;
+package com.hongru.base.view
+
+import android.support.v7.app.AppCompatActivity
+import io.reactivex.disposables.Disposable
+
 //<pre>
 //                       _oo0oo_
 //                      o8888888o
@@ -26,12 +30,26 @@ package com.hongru.coder;
 //</pre>
 
 
-import com.hongru.base.BaseApplication;
-
 /**
- * @author 彭鸿儒
- * @date 2018/1/15
+ *@author 彭鸿儒
+ * @date 2018/4/14
  * 邮箱:peng_hongru@163.com
  */
-public class App extends BaseApplication {
+open class BaseActivity : AppCompatActivity() {
+
+    private val disposables = arrayListOf<Disposable>()
+
+    /**
+     * 注册RxJava事件
+     */
+    fun registerDisposable(disposable: Disposable) {
+        disposables.add(disposable)
+    }
+
+    override fun onDestroy() {
+        disposables.forEach { it.dispose() }
+        super.onDestroy()
+    }
+
+
 }

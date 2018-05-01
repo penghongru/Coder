@@ -1,4 +1,8 @@
-package com.hongru.base.command;
+package com.hongru.basic_support
+
+import android.app.Application
+import com.hongru.base.Basic
+
 //<pre>
 //                       _oo0oo_
 //                      o8888888o
@@ -26,40 +30,16 @@ package com.hongru.base.command;
 //</pre>
 
 
-import com.blankj.utilcode.util.LogUtils;
-import com.hongru.base.enums.LogTag;
-
-import io.reactivex.functions.Action;
-import io.reactivex.functions.Consumer;
-
 /**
- * @author 彭鸿儒
- * @date 2018/1/14
+ *@author 彭鸿儒
+ * @date 2018/4/14
  * 邮箱:peng_hongru@163.com
  */
-public class BindCommand<T> {
+class App : Application() {
 
-    private Action action;
-    private Consumer<T> actionWithType;
-
-
-    private BindCommand() {
-
+    override fun onCreate() {
+        super.onCreate()
+        Basic.init(this)
     }
 
-    public static BindCommand create(Action action) {
-        BindCommand command = new BindCommand();
-        command.action = action;
-        return command;
-    }
-
-
-    public void execute() {
-        try {
-            action.run();
-        } catch (Exception e) {
-            LogUtils.eTag(LogTag.COMMAND.getDesc(),e);
-
-        }
-    }
 }

@@ -1,4 +1,7 @@
-package com.hongru.base.evnets;
+package com.hongru.base
+
+import android.content.Context
+
 //<pre>
 //                       _oo0oo_
 //                      o8888888o
@@ -27,17 +30,22 @@ package com.hongru.base.evnets;
 
 
 /**
- * @author 彭鸿儒
- * @date 2018/1/14
+ *@author 彭鸿儒
+ * @date 2018/4/14
  * 邮箱:peng_hongru@163.com
  */
-public class AppExitEvent {
-    private static final AppExitEvent ourInstance = new AppExitEvent();
+object Basic {
 
-    public static AppExitEvent getInstance() {
-        return ourInstance;
+
+    fun init(context: Context): Basic {
+        ContextHolder.applyContext(object : ContextAgent {
+            override fun applyContext(): Context? = context
+        })
+        return this
     }
 
-    private AppExitEvent() {
+    fun isDebugMode(debug: Boolean) {
+
     }
+
 }

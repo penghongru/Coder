@@ -19,18 +19,3 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
--basedirectory proguard-pro
-
--include proguard-utils.pro
-
--include proguard-normal.pro
-
--include proguard-support-v4.pro
-
--include proguard-support-v7.pro
-
--include proguard-design.pro
-
--include proguard-event-bus.pro
-
-

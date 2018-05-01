@@ -1,4 +1,7 @@
-package com.hongru.coder;
+package com.hongru.base
+
+import android.content.Context
+
 //<pre>
 //                       _oo0oo_
 //                      o8888888o
@@ -26,31 +29,46 @@ package com.hongru.coder;
 //</pre>
 
 
-import com.blankj.utilcode.util.LogUtils;
-import com.hongru.base.command.BindCommand;
-import com.hongru.base.vm.BaseViewModule;
+/**
+ *@author 彭鸿儒
+ * @date 2018/4/14
+ * 邮箱:peng_hongru@163.com
+ *
+ */
 
-import io.reactivex.functions.Action;
 
 /**
- * @author 彭鸿儒
- * @date 2018/1/15
- * 邮箱:peng_hongru@163.com
+ * context 对象维护者
  */
-public class SplashViewModule extends BaseViewModule {
+object ContextHolder {
 
-    public BindCommand clickCommand = BindCommand.create(new Action() {
-        @Override
-        public void run() throws Exception {
-            LogUtils.d("按钮被点击");
-        }
-    });
+    var agent: ContextAgent? = null
 
-
-
-
-    @Override
-    public void onRecycle() {
-
+    /**
+     * 对外context对象
+     */
+    fun context(): Context? {
+        return agent?.applyContext()
     }
+
+    /**
+     * 注册context代理人
+     */
+    fun applyContext(agent: ContextAgent) {
+        this.agent = agent
+    }
+
+
+}
+
+/**
+ * context 对象代理人
+ */
+interface ContextAgent {
+
+    /**
+     * 提供context对象
+     */
+    fun applyContext(): Context?
+
 }
